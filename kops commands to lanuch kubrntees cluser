@@ -1,0 +1,14 @@
+kops commands to lanuch kubrntees cluser
+#for creating a cluster
+
+kops create cluster --name=kube-vprofile.pelegdevopsproj.com --state=s3//:vprofile-kops-state-app --zones=us-east-2a,us-east-2b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kube-vprofile.pelegdevopsproj.com 
+
+kops update cluster --name kube-vprofile.pelegdevopsproj.com --state=s3//:vprofile-kops-state-app --yes 
+
+kops validate cluster --name kube-vprofile.pelegdevopsproj.com --state=s3//:vprofile-kops-state-app
+
+aws ec2 create-volume --availability-zone=us-east-2a --size=3 --volume-type=gp2
+
+kubectl get nodes
+kubectl describe node (the get node) | grep us-east-2 
+kuvectl lable nodes (selected nodes) zone=us-east-2a
